@@ -1,0 +1,3 @@
+Le fichier contient une liste 7 fichiers téléchargeables en ligne pour un espace relativement grand ~2.2Go. Il suffit de copiez cette ligne de fichier en argument de votre programme et que vous ajoutiez la destination pour vos tests.
+
+⚠ Pensez à mettre la destination dans /tmp/ dans un dossier exercice4 par exemple
