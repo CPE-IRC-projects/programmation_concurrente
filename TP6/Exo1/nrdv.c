@@ -38,4 +38,5 @@ int main(int argc, char **argv)
     //attend que tout le monde soit arrivé
     P(semid);
     printf("reparti\n");
+    shmdt(mem);
 }
