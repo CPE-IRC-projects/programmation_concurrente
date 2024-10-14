@@ -9,48 +9,36 @@
 
 int main()
 {
-    //récupère les semaphores
+    //récupère les semaphores / mutexs
     int mutexbuffer = sem_get(1);
-    int mutexbufferqte = sem_get(2);
-    int mutexreadwrite = sem_get(3);
-    //récupère la mémoire partagée
+    int mutexqte = sem_get(4);
+    int mutexindexlow = sem_get(5);
+    //semaphore pour savoir si l'écriture est disponible
+    int semwrite = sem_get(2);
+    //semaphore pour savoir si la lecture est disponible
+    int semread = sem_get(3);
+    //récupère la mémoire partagée (buffer)
     int shmidbuffer = shmget(BUFFERKEY,BUFFERSIZE*sizeof(int),0);
     int* buffer = shmat(shmidbuffer,NULL,0);
-    int shmidbufferqte = shmget(BUFFERQTEKEY, sizeof(int),0);
-    int* qte = shmat(shmidbufferqte, NULL, 0);
-    int shmireadwrite = shmget(READWRITEKEY, sizeof(int),0);
-    int* readwrite = shmat(shmidbufferqte, NULL, 0);
+    //récupère la seconde mémoire partagée (la quantité de données dans le tableau)
+    int shmidqte = shmget(QTEKEY,sizeof(int),0);
+    int* qte = shmat(shmidbuffer,NULL,0);
+    //récupère la troisème mémoire partagée (l'index de la première donnée dans le tableau)
+    int shmidqte = shmget(QTEKEY,sizeof(int),0);
+    int* qte = shmat(shmidbuffer,NULL,0);
     while(1){
         int random = (rand()%10);
         sleep(random);
-        P(shmireadwrite);
-        if(*readwrite<BUFFERSIZE){
-            P(mutexbuffer);
-            P(mutexbufferqte);
-            buffer[*qte] = random;
-            *qte = (*qte+1)%BUFFERSIZE;
-            V(mutexbufferqte);
-            V(mutexbuffer);
-            *readwrite += 1;
-        }
-        V(shmireadwrite);
+        P(semwrite);
+        P(mutexbuffer);
+        P(mutexqte)
+        buffer[*qte] = random;
+        *qte = (*qte+1)%BUFFERSIZE;
+        printf("%de push dans buffer %d\n", *qte, random);
+        V(mutexqte);
+        V(mutexbuffer);
+        V(semread);
 
     }
-    //récupère le droit sur le mutex pour mettre à jour la donnée
-    P(mutex);
-    *mem += 1;
-    //vérifie si il est le dernier à arriver
-    if(*mem == nbProcessus)
-    {
-        for(int i = 0; i<nbProcessus; i++){
-            V(semid);
-        }
-    }
-    printf("%d arrivé\n",mem[0]);
-    //rend le mutex
-    V(mutex);
-    //attend que tout le monde soit arrivé
-    P(semid);
-    printf("reparti\n");
-    shmdt(mem);
+    shmdt(buffer);
 }
