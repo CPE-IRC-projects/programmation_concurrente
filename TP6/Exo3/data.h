@@ -1,0 +1,2 @@
+#define TABLESIZE 3
+#define TABLEKEY 9875
