@@ -9,40 +9,33 @@
 
 int main()
 {
-    //récupère les semaphores
+    //récupère les semaphores / mutexs
     int mutexbuffer = sem_get(1);
-    int mutexqte = sem_get(4);
-    int mutexindex = sem_get(5);
-
+    //semaphore pour savoir si l'écriture est disponible
     int semwrite = sem_get(2);
+    //semaphore pour savoir si la lecture est disponible
     int semread = sem_get(3);
     //récupère la mémoire partagée
-    int shmidbuffer = shmget(BUFFERKEY,BUFFERSIZE*sizeof(int),0);
+    int shmidbuffer = shmget(BUFFERKEY,(BUFFERSIZE+2)*sizeof(int),0);
     int* buffer = shmat(shmidbuffer,NULL,0);
-    //récupère la seconde mémoire partagée (la quantité de données dans le tableau)
-    int shmidqte = shmget(QTEKEY,sizeof(int),0);
-    int* qte = shmat(shmidqte,NULL,0);
-    //récupère la troisème mémoire partagée (l'index de la première donnée dans le tableau)
-    int shmidindex = shmget(INDEXKEY,sizeof(int),0);
-    int* index = shmat(shmidindex,NULL,0);
 
     while(1){
-        int value;
+        //Attend d'avoir la possibilité de lire
         P(semread);
+        //Prend le contrôle de la mémoire
         P(mutexbuffer);
-        P(mutexindex);
-        value = buffer[*index];
-        printf("reçu %d depuis l'index %d\n",value, *index);
-        *index = (*index+1)%BUFFERSIZE;
-        V(mutexindex);
-        P(mutexqte);
-        *qte -= 1;
-        V(mutexqte);
+        //Récupère la première donnée (l'index de la première donnée est stockée dans buffer[BUFFERSIZE])
+        int value = buffer[buffer[BUFFERSIZE]];
+        printf("reçu %d depuis l'index %d\n",value, buffer[BUFFERSIZE]);
+        //Incrémente l'index (le modulo pour remettre à 6 pour ne pas arriver plus loin que BUFFERSIZE-1)
+        buffer[BUFFERSIZE] = (buffer[BUFFERSIZE]+1)%BUFFERSIZE;
+        //Décrémente la quantité de données dans le buffer
+        buffer[BUFFERSIZE+1] -= 1;
+        //Libère la mémoire
         V(mutexbuffer);
+        //Informe qu'une place en écriture est disponible
         V(semwrite);
 
     }
     shmdt(buffer);
-    shmdt(qte);
-    shmdt(index);
 }

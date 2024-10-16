@@ -1,4 +1,2 @@
 #define BUFFERSIZE 5
 #define BUFFERKEY 5681
-#define QTEKEY 5682
-#define INDEXKEY 5683
