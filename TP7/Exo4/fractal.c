@@ -5,7 +5,7 @@
 
 const int size = 1000;
 const int tailleRegions = 5;
-const int coordonnesBase[2] = {0,0};
+int coordonnesBase[3] = {0,0,0};
 
 struct pixels{
 	pthread_mutex_t mutex;
@@ -67,18 +67,22 @@ void *generate(void* args){
 	while (1)
 	{
 		pthread_mutex_lock(&argument->mutex);
+		if(coordonnesBase[2] == 1){
+			pthread_mutex_unlock(&argument->mutex);
+			pthread_exit(0);
+		}
 		int xMin = coordonnesBase[0];
 		int yMin = coordonnesBase[1];
-		if(xMin>size-tailleRegions && yMin > size-tailleRegions){
-			pthread_mutex_unlock(&argument->mutex);
-			break;
+		if(xMin==size-tailleRegions && yMin == size-tailleRegions){
+			coordonnesBase[2] = 1;
 		}
-		xMin += tailleRegions%size;
-		yMin += tailleRegions%size;
+		coordonnesBase[0] = (coordonnesBase[0]+tailleRegions)%size;
+		if(coordonnesBase[0] == 0){
+			coordonnesBase[1] = (coordonnesBase[1]+tailleRegions)%size;
+		}
 		pthread_mutex_unlock(&argument->mutex);
-
-		for(int y = yMin; y<yMin+5; y++){
-			for(int x = xMin; x<xMin+5; x++){
+		for(int y = yMin; y<yMin+tailleRegions; y++){
+			for(int x = xMin; x<xMin+tailleRegions; x++){
 				calcul(x,y,argument->image+3*(y * size + x));
 			}
 		}
@@ -106,12 +110,12 @@ int main(int argc, char const *argv[])
 		
 	}
 
-	for(int i = 0; i<N+1;i++){
+	for(int i = 0; i<N;i++){
 		pixels[i].image = image;
 		pixels[i].mutex = mutex;
 		pthread_create(&thread[i],NULL,generate,&pixels[i]);
 	}
-	for(int i = 0; i<N+1;i++){
+	for(int i = 0; i<N;i++){
 		pthread_join(thread[i], NULL);
 	}
 
