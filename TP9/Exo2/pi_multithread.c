@@ -45,8 +45,6 @@ int main(int argc, char **argv){
     }
     N = atoi(argv[1]);
     nbThreads = atoi(argv[2]);
-    //définit la seed du random sur le time
-    srand(time(NULL));
     //création des threads
     pthread_t thread[nbThreads];
     //création du mutex
