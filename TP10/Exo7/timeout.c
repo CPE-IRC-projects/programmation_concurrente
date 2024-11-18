@@ -11,12 +11,18 @@ void boucle(){
     fgets(c, sizeof(c), stdin);
     int value;
     int reussi = sscanf(c, "%d", &value);
-    if(reussi)
+    if(reussi==1){
+        alarm(0);
+        puts("Ok merci !!");
+    }else{
+        boucle();
+    }
 }
 
 void redirect(int signum) {
     if (signum == SIGALRM){
-        boucle();
+        puts("Trop tard !!");
+        exit(0);
     }
 }
 
