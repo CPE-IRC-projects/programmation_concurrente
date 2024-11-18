@@ -173,14 +173,18 @@ void *calcflou(void *){
 	int local_index;
 	while (1)
 	{
+		//lock pour récupérer l'index
 		pthread_mutex_lock(&mutex);
 		local_index = current_index;
+		//vérifie si on a pas déjà tout fait et sort du thread si c'est le cas
 		if(current_index+1 == qte_args){
 			pthread_mutex_unlock(&mutex);
 			pthread_exit(0);
 		}
 		current_index++;
+		//unlock l'index
 		pthread_mutex_unlock(&mutex);
+		//appelle la fonction
 		flou(arguments[local_index], "sortie");
 	}
 }
@@ -192,21 +196,17 @@ int main(int argc, char* argv[])
 	pthread_t thread[6];	
     pthread_mutex_init(&mutex, NULL);
 	arguments = argv;
+	//on ne compte pas le premier argument
 	qte_args = argc-1;
-	printf("%d\n", qte_args);
 
+	//création des threads
 	for(int i = 0; i<6;i++){
         pthread_create(&thread[i],NULL,calcflou,NULL);
     }
+	//attente des threads
     for(int i = 0; i<6;i++){
         pthread_join(thread[i], NULL);
     }
-
-
-    // for(int i = 1; i < argc; i++)
-    // {
-    //     flou(argv[i],"sortie");
-    // }
     /*----- Fin de Zone à Modifier -----*/
 	return 0;
 }
