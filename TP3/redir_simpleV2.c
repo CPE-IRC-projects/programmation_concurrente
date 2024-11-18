@@ -18,7 +18,7 @@ int main()
     }else{
         close(tube[1]);
         dup2(tube[0], 0);
-        execlp("tr","tr", "a-z", "A-Z", NULL);
         close(tube[0]);
+        execlp("tr","tr", "a-z", "A-Z", NULL);
     }
 }
