@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programmation concurrente</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h2 id="gcc">GCC</h2>
+<p><code>gcc -Wall -Wextra -g hello.c -o hello</code><br>
+<code>-Wall</code> : Ajout de warnings de base<br>
+<code>-Wextra</code> Ajout de warnings supplémentaires<br>
+<code>-g</code> : Ajout des infos de debug<br>
+<code>-o</code> : nom de l’exécutable final.</p>
+<h2 id="compilation">Compilation</h2>
+<p>La compilation passe par 4 étapes majeures</p>
+<h4 id="pre-processing">Pre-Processing</h4>
+<ul>
+<li>supression des commentaires</li>
+<li>Inclusion des fichiers .h dans le fichier .c</li>
+<li>Traitement des directives qui commencent par <strong>#</strong></li>
+</ul>
+<h4 id="compiling">Compiling</h4>
+<ul>
+<li>Vérification de la syntaxe</li>
+<li>Compilation en langage assembleur</li>
+</ul>
+<h4 id="assembling">Assembling</h4>
+<p>Transformation de l’assembleur en code machine.</p>
+<h4 id="linking">Linking</h4>
+<p>Lier tous les fichiers entre eux :</p>
+<ul>
+<li>les différentes classes</li>
+<li>la lib C…</li>
+</ul>
+<h2 id="arguments-dun-programme">Arguments d’un programme</h2>
+<p><strong>argc</strong> : nombre d’arguments qui sont passés.<br>
+<strong>argv</strong> : tableau de chaines de char (char** ou char *[])</p>
+<p>argv a une taille de argc + 1 car il possède NULL en dernière position.</p>
+<h2 id="processus">Processus</h2>
+<p>Un processus est un programme en cours d’exécution.<br>
+Il possède :</p>
+<ul>
+<li>un identifiant ==&gt; <strong>PID</strong></li>
+<li>Des I/O</li>
+<li>Un parent et un ou plusieurs enfants.</li>
+</ul>
+<h4 id="fork">Fork</h4>
+<p>Clonage d’un processus.<br>
+Il possède les mêmes I/O mais pas le même PID.</p>
+<p>La fonction <strong>fork</strong> prend 1 paramètre et renvoie un <strong>pid_t</strong>.<br>
+L’exécution du programme qui à été fork ne démarre pas depuis le début.</p>
+<p>Lors du fork, le père récupère le PID du fils, le fils reçoit 0 et le père reçoit -1 si le fork n’a pas pu cloner.</p>
+<h4 id="processus-zombie">Processus Zombie</h4>
+<p>Un processus qui c’est terminé normalement ou anormalement dont on a pas encore regardé l’état de retour.<br>
+wait peut attendre la fin d’un des fils, le premier qui se termine. Renvoie son identité et son statut de retour.</p>
+<h4 id="processus-orphelin">processus orphelin</h4>
+<p>Un processus ne peut pas être orphelin, si le père meurt, il change automatiquement de père.</p>
+<h4 id="sleep">Sleep</h4>
+<p>La méthode <strong>sleep</strong> permet d’éteindre un programme pendant un temps <strong>minimum</strong> pas le temps exact.</p>
+<h2 id="makefile">Makefile</h2>
+<h4 id="seul-fichier">1 seul fichier</h4>
+<pre class=" language-makefile"><code class="prism  language-makefile">CFLAGS<span class="token operator">=</span>-Wall -Wextra -g
+</code></pre>
+<p>La commande make suivie du nom du programme sans le <code>.c</code>.<br>
+Réalise la commande <code>cc -Wall -Wextra -g nomdufichier.c -o nomdufichier</code>.</p>
+<h4 id="règles-semi-explicites">règles semi-explicites</h4>
+<p>On met les CFLAGS comme au dessus puis on définit ce qu’on veut compiler.</p>
+<pre class=" language-makefile"><code class="prism  language-makefile"><span class="token symbol">nomdufichier</span><span class="token punctuation">:</span>nomdufichier.c
+</code></pre>
+<h4 id="plusieurs-fichiers">plusieurs fichiers</h4>
+<pre class=" language-makefile"><code class="prism  language-makefile">CFLAGS<span class="token operator">=</span>-Wall -Wextra -g
+
+<span class="token symbol">hello</span><span class="token punctuation">:</span> hello.o fonction.o
+<span class="token symbol">fonction.o </span><span class="token punctuation">:</span> fonction.c fonction.h
+<span class="token symbol">hello.o</span><span class="token punctuation">:</span> hello.c fonction.h
+
+<span class="token symbol">clean</span><span class="token punctuation">:</span>
+	rm -rf *.o hello <span class="token comment">#lors de compilation complexes, ne pas supprimer les .o</span>
+</code></pre>
+<p>Lorsqu’on utilise la commande <strong>make</strong>, la première règle est lancée (ici <code>hello</code>), si on veut clean, il faut faire la commande <code>make clean</code>.</p>
+<h4 id="attention">Attention</h4>
+<p>Les warnings sont générés au moment de la compilation du fichier, si un fichier n’est pas modifié donc pas recompilé, les warnings ne seront pas re-générés.<br>
+<strong>Toujours tout recompiler pour vérifier les warnings en fin de développement.</strong></p>
+<h4 id="make-all">make all</h4>
+<p>on peut créer une règle all (peu importe le nom) qui crée les différents exécutables qui sont dans le make.</p>
+<pre class=" language-makefile"><code class="prism  language-makefile"><span class="token symbol">all</span><span class="token punctuation">:</span> hello fork
+</code></pre>
+<h4 id="règles-explicites">règles explicites</h4>
+<pre class=" language-makefile"><code class="prism  language-makefile"><span class="token variable">$@</span> <span class="token comment">#cible</span>
+<span class="token variable">$&lt;</span> <span class="token comment">#le premier fichier indiqué en dépendance</span>
+<span class="token variable">$^</span> <span class="token comment">#l'ensemble des dépendances</span>
+</code></pre>
+<p>dans gcc, le -c permet de générer les fichiers objet (.o)</p>
+<h2 id="exec">Exec</h2>
+<p>Lorsqu’on lance une commande dans un terminal, deux commandes se lancent :</p>
+<ul>
+<li>fork pour se dupliquer</li>
+<li>exec pour exécuter le bon programme.</li>
+</ul>
+<h4 id="famille-de-fonction">famille de fonction</h4>
+<p>exec existe en 6 fonctions, regroupés en 2 familles :</p>
+<ul>
+<li>execl</li>
+<li>execv</li>
+</ul>
+<p>La fonction <strong>exec</strong> quelle qu’elle soit, retrun seulement si il y a eu une erreur</p>
+<h4 id="execl">execl</h4>
+<p>Possède une liste d’arguments terminée par NULL (même si il n’y a qu’un seul argument aka le nom du programme).</p>
+<pre class=" language-c"><code class="prism  language-c"><span class="token keyword">int</span> error <span class="token operator">=</span> <span class="token function">execlp</span><span class="token punctuation">(</span><span class="token string">"ls"</span><span class="token punctuation">,</span><span class="token string">"ls"</span><span class="token punctuation">,</span><span class="token string">"-l"</span><span class="token punctuation">,</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="pipe">Pipe</h2>
+<h4 id="fichiers">Fichiers</h4>
+<p>Tout processus lance au moins 3 fichiers :</p>
+<ul>
+<li>Entrée standard : 0</li>
+<li>Sortie standard : 1</li>
+<li>Sortie d’Erreur : 2</li>
+</ul>
+<p>Lors d’un fork, le même fichier est ouvert avec le même état noyau (ils utilisent le même espace mémoire pour y accéder). Ils ne peuvent pas accéder au fichier au même moment.</p>
+<h4 id="ouverture-de-fichier">ouverture de fichier</h4>
+<p>open(<em>avec des paramètres</em>) =&gt; renvoie le file descriptor associé<br>
+close(<em>avec des paramètres</em>)<br>
+Des flags qui peuvent être utile :</p>
+<ul>
+<li>O_RDONLY</li>
+<li>O_WRONLY</li>
+<li>O_RDWR</li>
+<li>O_CREATE =&gt; Créé le fichier si il n’existe pas</li>
+<li>O_APPEND =&gt; Amène à la fin du fichier</li>
+<li>O_TRUNC =&gt; efface le contenu du fichier avant de l’ouvrir</li>
+</ul>
+<p>Pour utiliser plusieurs flags, on peut les concaténer avec un ou binaire</p>
+<pre class=" language-bash"><code class="prism  language-bash">O_WRONLY <span class="token operator">|</span> O_CREATE
+</code></pre>
+<h4 id="read--write">read / write</h4>
+<p>read et write prennent 3 paramètres :</p>
+<ul>
+<li>int fd =&gt; le descripteur de fichier (0,1,2 pour les fichiers natifs et plus si un fichier à été ouvert)</li>
+<li>un buffer, de type void qui doit être un pointeur peu importe son type</li>
+<li>et un count qui correspond au nombre d’octets à lire (la fonction renvoie la quantité lue ou écrite)</li>
+</ul>
+<h4 id="tubes-anonymes-pipe">Tubes anonymes (Pipe)</h4>
+<p>la fonction pipe prend en entrée un tableau de 2 int (<code>int pipefd[2]</code>)<br>
+Ce tableau contient les descripteurs de fichiers de la sortie et de l’entrée du tube.<br>
+Le tube fonctionne sur un système <strong>FIFO</strong>.<br>
+<strong>Il faut fermer les extrémités que l’on utilise pas.</strong><br>
+Dans un tube, l’extrémité entrante est <code>tube[1]</code> et l’extrémité sortante est <code>tube[0]</code></p>
+<p>Lors d’un read dans <code>tube[0]</code>, la données à été utilisée et disparait du tube.</p>
+<h4 id="redirection">redirection</h4>
+<pre class=" language-c"><code class="prism  language-c"><span class="token keyword">int</span> <span class="token function">dup2</span><span class="token punctuation">(</span><span class="token keyword">int</span> oldfd<span class="token punctuation">,</span> <span class="token keyword">int</span> newfd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>On duplique le descripteur de fichier <code>oldfd</code> dans <code>newfd</code>.<br>
+Si on fait</p>
+<pre class=" language-c"><code class="prism  language-c"><span class="token keyword">int</span> <span class="token function">dup2</span><span class="token punctuation">(</span>tube<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>La sortie standard est remplacée par l’entrée du tube (on a plus la possibilité d’écrire sur la sortie standard).</p>
+<h4 id="tube-nommé">tube nommé</h4>
+<pre class=" language-c"><code class="prism  language-c"><span class="token keyword">int</span> <span class="token function">mkfifo</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>filename<span class="token punctuation">,</span> mode_t mode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Crée un fichier de type tube sur le système.<br>
+Deux processus indépendants peuvent ainsi communiquer.<br>
+Pour supprimer le tube :</p>
+<pre class=" language-c"><code class="prism  language-c"><span class="token keyword">int</span> <span class="token function">unlink</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>filename<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="semaphore">Semaphore</h2>
+<p>Introduit par Dijkstra en 1965. Utilisé pour synchroniser des processus.<br>
+Des Semaphores peuvent venir de processus différents.</p>
+<p>Un <strong>Semaphore</strong> c’est :</p>
+<ul>
+<li>Un entier <strong>E(s)</strong> (positif) --&gt; quantité d’opérations disponibles.</li>
+<li>Une file d’attente <strong>F(s)</strong> --&gt; Liste d’attente des opérations qui ont fait P(s) quand E vault 0.</li>
+<li>Deux opérations :
+<ul>
+<li>P(s) --&gt; décrémente E si possible (sinon va dans <strong>F(s)</strong>).</li>
+<li>V(s) --&gt; réincrémente F (pas besoin d’être passé par P(s) pour réincrémenter le compteur).</li>
+</ul>
+</li>
+<li>P et V sont des opérations <strong>atomiques</strong> (opération qui ne peut être interrompue)</li>
+</ul>
+<h3 id="mutex">Mutex</h3>
+<p><strong>Mutual Exclusion</strong> :</p>
+<ul>
+<li>Protéger une ressource critique (un seul process doit pouvoir y accéder pendant autant de temps que nécéssaire)</li>
+</ul>
+<p>Initialisation d’un sémaphore avec <strong>un</strong> jeton lors de son initialisation.<br>
+Chaque P doit être suivi par un V et inversement.</p>
+<h3 id="utilisation">Utilisation</h3>
+<p>Gestion d’un parking avec barrière<br>
+Gestion d’accès à une BDD<br>
+…</p>
+<h4 id="cas-du-parking-">Cas du parking :</h4>
+<p>On créé un semaphore avec n places disponibles, chaque entrée réalise une opération P et chaque sortie une opération V.</p>
+<h4 id="cas-bdd">Cas bdd</h4>
+<p>Un réacteur doit être le seul à accéder à la base<br>
+Un lecteur peut y accéder en même temps de d’autres lecteurs (pas écriteurs)</p>
+<h4 id="exemple-des-philosophes">Exemple des philosophes</h4>
+<p>Il y a n philosophes et n fourchettes, chaque philosophe à besoin de 2 fourchettes pour manger.</p>
+<h3 id="en-c">En C</h3>
+<pre class=" language-c"><code class="prism  language-c"><span class="token keyword">int</span> <span class="token function">semget</span><span class="token punctuation">(</span>key_t key<span class="token punctuation">,</span> <span class="token keyword">int</span> nsems<span class="token punctuation">,</span> <span class="token keyword">int</span> semflg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>key_t</code> est l’identifiant (int)<br>
+<code>nsems</code> doit toujours valoir 1 (dit le nombre de semaphore créé)<br>
+<code>semflg</code> correspond aux droits.</p>
+<h2 id="mémoire-partagée">Mémoire partagée</h2>
+<p>Permet de partager une donnée entre plusieurs processus.<br>
+Il faut protéger la lecture / écriture avec des sémaphores.</p>
+<p>Il faut attacher la mémoire partagée avec <code>shmat</code>.<br>
+Lorsqu’on en a plus besoin, il faut la détacher avec <code>shmdt</code>.<br>
+<strong>shmat</strong> revoie un pointeur générique <code>void *</code> pour avoir la possibilité de retourner tout type de pointeur.</p>
+<h2 id="thread">Thread</h2>
+<p>Une nouvelle file d’exécution au sein du même processus.<br>
+Mémoire partagée<br>
+Changement de contexte plus rapide (pas de déchargement de mémoire dans le processeur)</p>
+<pre class=" language-c"><code class="prism  language-c"><span class="token function">pthread_create</span><span class="token punctuation">(</span>pthread_t <span class="token operator">*</span>restrict thread <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> 
+</code></pre>
+<p>prend en paramètre :</p>
+<ul>
+<li>un pthread_t</li>
+<li>une fonction void*</li>
+<li>et un argument void *</li>
+</ul>
+<p>Pour attendre la fin d’un thread, il faut utiliser <code>pthread_join</code><br>
+avec le pthread_t et le retour.</p>
+<p>Exit ferme de process, si on veut quitter un thread, il faut <code>pthread_exit</code>.</p>
+<h4 id="semaphore-1">Semaphore</h4>
+<p>Pour créer : sem_create<br>
+P --&gt; sem_wait<br>
+V --&gt; sem_post<br>
+pour détruire : sem_destroy</p>
+<h4 id="mutex-dans-les-pthread">mutex dans les pthread</h4>
+<p>pthread_mutex_create<br>
+pthread_mutex_lock(pthread_mutex_t)<br>
+pthread_mutex_unlock(pthread_mutex_t)<br>
+pthread_mutex_destroy</p>
+<h4 id="barrière">barrière</h4>
+<p>bloque les threads jusqu’a ce que les n se finissent.</p>
+<h2 id="signal">Signal</h2>
+<h4 id="kill">kill</h4>
+<p>La fonction kill envoie un signal à un process.<br>
+On doit donner le pid. Si il est superieur à 0, on envoie au bon process, si il vaut 0, envoie au process courant et à tous es enfants.</p>
+<h4 id="alarm">alarm</h4>
+<p>envoie un signal <strong>SIGALRM</strong> au pour de n secondes.<br>
+Si alarm est appelé 2 fois, la deuxième reset le premier et renvoie le temps qu’il restait avant l’envoi du signal.</p>
+</div>
+</body>
+
+</html>
