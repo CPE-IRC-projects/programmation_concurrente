@@ -1,0 +1,200 @@
+2023-12-06T15:18:34,INFO User login successful,user_id: 1025
+2023-12-06T15:17:34,INFO User login successful,user_id: 1052
+2023-12-06T15:16:34,ERROR Network Failure,Error Code: 5912
+2023-12-06T15:15:34,INFO User login successful,user_id: 1028
+2023-12-06T15:14:34,INFO User login successful,user_id: 1003
+2023-12-06T15:13:34,ERROR Database Connection Failed,Error Code: 5987
+2023-12-06T15:12:34,WARNING Attempted login with invalid credentials,user_id: 1027
+2023-12-06T15:11:34,ERROR Network Failure,Error Code: 5472
+2023-12-06T15:10:34,ERROR Database Connection Failed,Error Code: 5178
+2023-12-06T15:09:34,INFO User login successful,user_id: 1046
+2023-12-06T15:08:34,ERROR Database Connection Failed,Error Code: 5280
+2023-12-06T15:07:34,INFO User login successful,user_id: 1039
+2023-12-06T15:06:34,WARNING Attempted login with invalid credentials,user_id: 1070
+2023-12-06T15:05:34,ERROR Network Failure,Error Code: 5424
+2023-12-06T15:04:34,ERROR Network Failure,Error Code: 5573
+2023-12-06T15:03:34,ERROR Database Connection Failed,Error Code: 5393
+2023-12-06T15:02:34,INFO User login successful,user_id: 1057
+2023-12-06T15:01:34,ERROR Network Failure,Error Code: 5117
+2023-12-06T15:00:34,WARNING Attempted login with invalid credentials,user_id: 1030
+2023-12-06T14:59:34,ERROR Database Connection Failed,Error Code: 5581
+2023-12-06T14:58:34,ERROR Network Failure,Error Code: 5946
+2023-12-06T14:57:34,ERROR Network Failure,Error Code: 5609
+2023-12-06T14:56:34,ERROR Network Failure,Error Code: 5379
+2023-12-06T14:55:34,ERROR Database Connection Failed,Error Code: 5668
+2023-12-06T14:54:34,WARNING Attempted login with invalid credentials,user_id: 1064
+2023-12-06T14:53:34,ERROR Database Connection Failed,Error Code: 5247
+2023-12-06T14:52:34,WARNING Attempted login with invalid credentials,user_id: 1010
+2023-12-06T14:51:34,ERROR Network Failure,Error Code: 5476
+2023-12-06T14:50:34,ERROR Network Failure,Error Code: 5168
+2023-12-06T14:49:34,ERROR Database Connection Failed,Error Code: 5961
+2023-12-06T14:48:34,ERROR Network Failure,Error Code: 5877
+2023-12-06T14:47:34,WARNING Attempted login with invalid credentials,user_id: 1096
+2023-12-06T14:46:34,ERROR Network Failure,Error Code: 5810
+2023-12-06T14:45:34,WARNING Attempted login with invalid credentials,user_id: 1043
+2023-12-06T14:44:34,INFO User login successful,user_id: 1066
+2023-12-06T14:43:34,WARNING Attempted login with invalid credentials,user_id: 1039
+2023-12-06T14:42:34,WARNING Attempted login with invalid credentials,user_id: 1078
+2023-12-06T14:41:34,ERROR Network Failure,Error Code: 5782
+2023-12-06T14:40:34,INFO User login successful,user_id: 1004
+2023-12-06T14:39:34,ERROR Network Failure,Error Code: 5081
+2023-12-06T14:38:34,WARNING Attempted login with invalid credentials,user_id: 1006
+2023-12-06T14:37:34,ERROR Network Failure,Error Code: 5892
+2023-12-06T14:36:34,INFO User login successful,user_id: 1087
+2023-12-06T14:35:34,WARNING Attempted login with invalid credentials,user_id: 1087
+2023-12-06T14:34:34,ERROR Network Failure,Error Code: 5709
+2023-12-06T14:33:34,ERROR Database Connection Failed,Error Code: 5453
+2023-12-06T14:32:34,WARNING Attempted login with invalid credentials,user_id: 1028
+2023-12-06T14:31:34,ERROR Database Connection Failed,Error Code: 5254
+2023-12-06T14:30:34,WARNING Attempted login with invalid credentials,user_id: 1002
+2023-12-06T14:29:34,INFO User login successful,user_id: 1002
+2023-12-06T14:28:34,INFO User login successful,user_id: 1051
+2023-12-06T14:27:34,INFO User login successful,user_id: 1044
+2023-12-06T14:26:34,WARNING Attempted login with invalid credentials,user_id: 1000
+2023-12-06T14:25:34,INFO User login successful,user_id: 1075
+2023-12-06T14:24:34,WARNING Attempted login with invalid credentials,user_id: 1054
+2023-12-06T14:23:34,INFO User login successful,user_id: 1082
+2023-12-06T14:22:34,INFO User login successful,user_id: 1019
+2023-12-06T14:21:34,ERROR Database Connection Failed,Error Code: 5399
+2023-12-06T14:20:34,WARNING Attempted login with invalid credentials,user_id: 1021
+2023-12-06T14:19:34,WARNING Attempted login with invalid credentials,user_id: 1079
+2023-12-06T14:18:34,INFO User login successful,user_id: 1087
+2023-12-06T14:17:34,ERROR Network Failure,Error Code: 5678
+2023-12-06T14:16:34,ERROR Database Connection Failed,Error Code: 5376
+2023-12-06T14:15:34,INFO User login successful,user_id: 1016
+2023-12-06T14:14:34,ERROR Network Failure,Error Code: 5132
+2023-12-06T14:13:34,ERROR Database Connection Failed,Error Code: 5590
+2023-12-06T14:12:34,WARNING Attempted login with invalid credentials,user_id: 1007
+2023-12-06T14:11:34,INFO User login successful,user_id: 1018
+2023-12-06T14:10:34,INFO User login successful,user_id: 1003
+2023-12-06T14:09:34,WARNING Attempted login with invalid credentials,user_id: 1034
+2023-12-06T14:08:34,ERROR Network Failure,Error Code: 5174
+2023-12-06T14:07:34,WARNING Attempted login with invalid credentials,user_id: 1094
+2023-12-06T14:06:34,WARNING Attempted login with invalid credentials,user_id: 1071
+2023-12-06T14:05:34,INFO User login successful,user_id: 1004
+2023-12-06T14:04:34,WARNING Attempted login with invalid credentials,user_id: 1022
+2023-12-06T14:03:34,ERROR Database Connection Failed,Error Code: 5451
+2023-12-06T14:02:34,ERROR Network Failure,Error Code: 5394
+2023-12-06T14:01:34,ERROR Network Failure,Error Code: 5615
+2023-12-06T14:00:34,INFO User login successful,user_id: 1026
+2023-12-06T13:59:34,ERROR Database Connection Failed,Error Code: 5699
+2023-12-06T13:58:34,INFO User login successful,user_id: 1074
+2023-12-06T13:57:34,WARNING Attempted login with invalid credentials,user_id: 1038
+2023-12-06T13:56:34,INFO User login successful,user_id: 1041
+2023-12-06T13:55:34,ERROR Database Connection Failed,Error Code: 5841
+2023-12-06T13:54:34,INFO User login successful,user_id: 1041
+2023-12-06T13:53:34,INFO User login successful,user_id: 1097
+2023-12-06T13:52:34,ERROR Database Connection Failed,Error Code: 5388
+2023-12-06T13:51:34,ERROR Database Connection Failed,Error Code: 5896
+2023-12-06T13:50:34,WARNING Attempted login with invalid credentials,user_id: 1094
+2023-12-06T13:49:34,WARNING Attempted login with invalid credentials,user_id: 1093
+2023-12-06T13:48:34,INFO User login successful,user_id: 1069
+2023-12-06T13:47:34,INFO User login successful,user_id: 1099
+2023-12-06T13:46:34,WARNING Attempted login with invalid credentials,user_id: 1019
+2023-12-06T13:45:34,ERROR Network Failure,Error Code: 5005
+2023-12-06T13:44:34,WARNING Attempted login with invalid credentials,user_id: 1080
+2023-12-06T13:43:34,WARNING Attempted login with invalid credentials,user_id: 1002
+2023-12-06T13:42:34,WARNING Attempted login with invalid credentials,user_id: 1034
+2023-12-06T13:41:34,INFO User login successful,user_id: 1040
+2023-12-06T13:40:34,WARNING Attempted login with invalid credentials,user_id: 1047
+2023-12-06T13:39:34,INFO User login successful,user_id: 1089
+2023-12-06T13:38:34,ERROR Database Connection Failed,Error Code: 5430
+2023-12-06T13:37:34,ERROR Network Failure,Error Code: 5975
+2023-12-06T13:36:34,WARNING Attempted login with invalid credentials,user_id: 1036
+2023-12-06T13:35:34,ERROR Database Connection Failed,Error Code: 5756
+2023-12-06T13:34:34,INFO User login successful,user_id: 1049
+2023-12-06T13:33:34,INFO User login successful,user_id: 1077
+2023-12-06T13:32:34,INFO User login successful,user_id: 1061
+2023-12-06T13:31:34,INFO User login successful,user_id: 1080
+2023-12-06T13:30:34,ERROR Network Failure,Error Code: 5048
+2023-12-06T13:29:34,WARNING Attempted login with invalid credentials,user_id: 1066
+2023-12-06T13:28:34,INFO User login successful,user_id: 1058
+2023-12-06T13:27:34,ERROR Network Failure,Error Code: 5454
+2023-12-06T13:26:34,ERROR Database Connection Failed,Error Code: 5879
+2023-12-06T13:25:34,ERROR Database Connection Failed,Error Code: 5831
+2023-12-06T13:24:34,INFO User login successful,user_id: 1088
+2023-12-06T13:23:34,INFO User login successful,user_id: 1009
+2023-12-06T13:22:34,WARNING Attempted login with invalid credentials,user_id: 1025
+2023-12-06T13:21:34,ERROR Network Failure,Error Code: 5914
+2023-12-06T13:20:34,ERROR Database Connection Failed,Error Code: 5332
+2023-12-06T13:19:34,INFO User login successful,user_id: 1055
+2023-12-06T13:18:34,INFO User login successful,user_id: 1099
+2023-12-06T13:17:34,WARNING Attempted login with invalid credentials,user_id: 1069
+2023-12-06T13:16:34,WARNING Attempted login with invalid credentials,user_id: 1011
+2023-12-06T13:15:34,INFO User login successful,user_id: 1027
+2023-12-06T13:14:34,WARNING Attempted login with invalid credentials,user_id: 1025
+2023-12-06T13:13:34,INFO User login successful,user_id: 1066
+2023-12-06T13:12:34,INFO User login successful,user_id: 1078
+2023-12-06T13:11:34,WARNING Attempted login with invalid credentials,user_id: 1023
+2023-12-06T13:10:34,WARNING Attempted login with invalid credentials,user_id: 1035
+2023-12-06T13:09:34,WARNING Attempted login with invalid credentials,user_id: 1001
+2023-12-06T13:08:34,ERROR Network Failure,Error Code: 5661
+2023-12-06T13:07:34,ERROR Database Connection Failed,Error Code: 5420
+2023-12-06T13:06:34,WARNING Attempted login with invalid credentials,user_id: 1038
+2023-12-06T13:05:34,INFO User login successful,user_id: 1069
+2023-12-06T13:04:34,INFO User login successful,user_id: 1000
+2023-12-06T13:03:34,WARNING Attempted login with invalid credentials,user_id: 1074
+2023-12-06T13:02:34,WARNING Attempted login with invalid credentials,user_id: 1074
+2023-12-06T13:01:34,ERROR Network Failure,Error Code: 5318
+2023-12-06T13:00:34,INFO User login successful,user_id: 1097
+2023-12-06T12:59:34,WARNING Attempted login with invalid credentials,user_id: 1011
+2023-12-06T12:58:34,ERROR Network Failure,Error Code: 5960
+2023-12-06T12:57:34,WARNING Attempted login with invalid credentials,user_id: 1039
+2023-12-06T12:56:34,INFO User login successful,user_id: 1039
+2023-12-06T12:55:34,ERROR Network Failure,Error Code: 5288
+2023-12-06T12:54:34,INFO User login successful,user_id: 1023
+2023-12-06T12:53:34,ERROR Database Connection Failed,Error Code: 5969
+2023-12-06T12:52:34,ERROR Network Failure,Error Code: 5718
+2023-12-06T12:51:34,ERROR Database Connection Failed,Error Code: 5824
+2023-12-06T12:50:34,ERROR Database Connection Failed,Error Code: 5256
+2023-12-06T12:49:34,ERROR Database Connection Failed,Error Code: 5659
+2023-12-06T12:48:34,ERROR Database Connection Failed,Error Code: 5054
+2023-12-06T12:47:34,WARNING Attempted login with invalid credentials,user_id: 1002
+2023-12-06T12:46:34,WARNING Attempted login with invalid credentials,user_id: 1066
+2023-12-06T12:45:34,WARNING Attempted login with invalid credentials,user_id: 1012
+2023-12-06T12:44:34,WARNING Attempted login with invalid credentials,user_id: 1031
+2023-12-06T12:43:34,WARNING Attempted login with invalid credentials,user_id: 1097
+2023-12-06T12:42:34,WARNING Attempted login with invalid credentials,user_id: 1064
+2023-12-06T12:41:34,ERROR Network Failure,Error Code: 5125
+2023-12-06T12:40:34,INFO User login successful,user_id: 1088
+2023-12-06T12:39:34,WARNING Attempted login with invalid credentials,user_id: 1066
+2023-12-06T12:38:34,WARNING Attempted login with invalid credentials,user_id: 1064
+2023-12-06T12:37:34,INFO User login successful,user_id: 1027
+2023-12-06T12:36:34,WARNING Attempted login with invalid credentials,user_id: 1058
+2023-12-06T12:35:34,INFO User login successful,user_id: 1001
+2023-12-06T12:34:34,INFO User login successful,user_id: 1059
+2023-12-06T12:33:34,INFO User login successful,user_id: 1051
+2023-12-06T12:32:34,INFO User login successful,user_id: 1018
+2023-12-06T12:31:34,ERROR Network Failure,Error Code: 5983
+2023-12-06T12:30:34,INFO User login successful,user_id: 1017
+2023-12-06T12:29:34,ERROR Database Connection Failed,Error Code: 5241
+2023-12-06T12:28:34,WARNING Attempted login with invalid credentials,user_id: 1011
+2023-12-06T12:27:34,WARNING Attempted login with invalid credentials,user_id: 1037
+2023-12-06T12:26:34,WARNING Attempted login with invalid credentials,user_id: 1014
+2023-12-06T12:25:34,INFO User login successful,user_id: 1085
+2023-12-06T12:24:34,INFO User login successful,user_id: 1043
+2023-12-06T12:23:34,ERROR Network Failure,Error Code: 5265
+2023-12-06T12:22:34,WARNING Attempted login with invalid credentials,user_id: 1043
+2023-12-06T12:21:34,WARNING Attempted login with invalid credentials,user_id: 1076
+2023-12-06T12:20:34,WARNING Attempted login with invalid credentials,user_id: 1032
+2023-12-06T12:19:34,ERROR Database Connection Failed,Error Code: 5282
+2023-12-06T12:18:34,ERROR Network Failure,Error Code: 5339
+2023-12-06T12:17:34,ERROR Network Failure,Error Code: 5434
+2023-12-06T12:16:34,WARNING Attempted login with invalid credentials,user_id: 1096
+2023-12-06T12:15:34,WARNING Attempted login with invalid credentials,user_id: 1084
+2023-12-06T12:14:34,ERROR Database Connection Failed,Error Code: 5657
+2023-12-06T12:13:34,WARNING Attempted login with invalid credentials,user_id: 1078
+2023-12-06T12:12:34,ERROR Database Connection Failed,Error Code: 5403
+2023-12-06T12:11:34,ERROR Database Connection Failed,Error Code: 5183
+2023-12-06T12:10:34,ERROR Database Connection Failed,Error Code: 5249
+2023-12-06T12:09:34,ERROR Database Connection Failed,Error Code: 5451
+2023-12-06T12:08:34,WARNING Attempted login with invalid credentials,user_id: 1081
+2023-12-06T12:07:34,ERROR Network Failure,Error Code: 5374
+2023-12-06T12:06:34,WARNING Attempted login with invalid credentials,user_id: 1050
+2023-12-06T12:05:34,INFO User login successful,user_id: 1081
+2023-12-06T12:04:34,WARNING Attempted login with invalid credentials,user_id: 1006
+2023-12-06T12:03:34,ERROR Network Failure,Error Code: 5037
+2023-12-06T12:02:34,INFO User login successful,user_id: 1045
+2023-12-06T12:01:34,INFO User login successful,user_id: 1005
+2023-12-06T12:00:34,INFO User login successful,user_id: 1040
+2023-12-06T11:59:34,WARNING Attempted login with invalid credentials,user_id: 1081
